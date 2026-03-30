@@ -36,10 +36,10 @@ double sinn(double x, uint16_t count) {
     double sum = 0.0;
     for (uint16_t n = 1; n <= count; ++n) {
         double term = pown(x, 2 * n - 1) / fact(2 * n - 1);
-        if (n % 2 == 0) {
-            sum -= term;
-        } else {
+        if ((n - 1) % 2 == 0) {
             sum += term;
+        } else {
+            sum -= term;
         }
     }
     return sum;
