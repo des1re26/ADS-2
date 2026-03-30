@@ -20,7 +20,6 @@ uint64_t fact(uint16_t n) {
 }
 
 double calcItem(double x, uint16_t n) {
-    if (n == 0) return 1.0;
     return pown(x, n) / fact(n);
 }
 
@@ -34,13 +33,8 @@ double expn(double x, uint16_t count) {
 
 double sinn(double x, uint16_t count) {
     double sum = 0.0;
-    for (uint16_t n = 1; n <= count; ++n) {
-        double term = pown(x, 2 * n - 1) / fact(2 * n - 1);
-        if ((n - 1) % 2 == 0) {
-            sum += term;
-        } else {
-            sum -= term;
-        }
+    for (uint16_t n = 0; n <= count; ++n) {
+        sum += pown(-1.0, n) * pown(x, 2 * n + 1) / fact(2 * n + 1);
     }
     return sum;
 }
@@ -48,12 +42,7 @@ double sinn(double x, uint16_t count) {
 double cosn(double x, uint16_t count) {
     double sum = 0.0;
     for (uint16_t n = 0; n <= count; ++n) {
-        double term = pown(x, 2 * n) / fact(2 * n);
-        if (n % 2 == 0) {
-            sum += term;
-        } else {
-            sum -= term;
-        }
+        sum += pown(-1.0, n) * pown(x, 2 * n) / fact(2 * n);
     }
     return sum;
 }
