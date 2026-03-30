@@ -33,16 +33,28 @@ double expn(double x, uint16_t count) {
 
 double sinn(double x, uint16_t count) {
     double sum = 0.0;
+    double term = x;
     for (uint16_t n = 0; n <= count; ++n) {
-        sum += pown(-1.0, n) * pown(x, 2 * n + 1) / fact(2 * n + 1);
+        if (n == 0) {
+            sum += term;
+        } else {
+            term *= -x * x / ((2 * n) * (2 * n + 1));
+            sum += term;
+        }
     }
     return sum;
 }
 
 double cosn(double x, uint16_t count) {
     double sum = 0.0;
+    double term = 1.0;
     for (uint16_t n = 0; n <= count; ++n) {
-        sum += pown(-1.0, n) * pown(x, 2 * n) / fact(2 * n);
+        if (n == 0) {
+            sum += term;
+        } else {
+            term *= -x * x / ((2 * n - 1) * (2 * n));
+            sum += term;
+        }
     }
     return sum;
 }
